@@ -1,38 +1,45 @@
-var x = 100;
-var y = 100;
-var xspeed = 10;
-var yspeed = 10.3;
-//teste
-class PVector{
-	var x;
-	var y;
 
-	PVector(var x1, var y1){
-		x = x1;
-		y = y1;
+
+let bubble;
+let bubble2;
+
+function setup(){
+	createCanvas(800,600);
+	bubble = new Bubble(200,200,20);
+	bubble2 = new Bubble(400,200,40);
+	print(bubble.x,bubble.y);
+
+	//w = new Walker();
+	background(0);
+}
+
+function draw(){
+		background(0);
+		background(0);
+		bubble.move();
+		bubble.show();
+		bubble2.move();
+		bubble2.show();
+}
+
+class Bubble{
+	constructor(x,y,r){
+		this.x = x;
+		this.y = y;
+		this.r = r
 	}
-}
 
-function setup() {
-  createCanvas(640,360);
-  background(120);
-}
+	move(){
+		this.x = this.x + random(-5,5);
+		this.y = this.y + random(-5,5);
+	}
 
-function draw() {
-  background(120);
-  x = x + xspeed;
-  y = y + yspeed;
+	show(){
+		stroke(255);
+		strokeWeight(4);
+		noFill();
+		ellipse(this.x,this.y,this.r*2);
+	}
 
-  if((x>width) || (x<0)){
-	xspeed = xspeed *-1;
-  }
-
-  if((y>height) || (y<0)){
-	yspeed = yspeed * -1;
-  }
-
-  stroke(0);
-  fill(175);
-  ellipse(x,y,16,16);
 
 }
