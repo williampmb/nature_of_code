@@ -22,11 +22,11 @@ class Walker{
   }
 
   walk(){
-    var choice = parseInt(random(0,4));
-    if(choice == 0) this.axisX++;
-    if(choice == 1) this.axisX--;
-    if(choice == 2) this.axisY++;
-    if(choice == 3) this.axisY--;
+    var choice = random(1);
+    if(choice < 0.4) this.axisX++;
+    if(choice < 0.6) this.axisX--;
+    if(choice < 0.7) this.axisY++;
+    else this.axisY--;
     this.axisX = constrain(this.axisX,0,width-1);
     this.axisY = constrain(this.axisY,0,height-1);
   }
