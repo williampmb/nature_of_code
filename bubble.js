@@ -9,9 +9,7 @@ function setup(){
 	createCanvas(widthScreen,heightScreen);
 	bubble = new Bubble(200,200,20);
 	bubble2 = new Bubble(400,200,40);
-	print(bubble.x,bubble.y);
 
-	//w = new Walker();
 	background(0);
 }
 
