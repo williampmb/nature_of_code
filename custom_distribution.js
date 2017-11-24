@@ -17,9 +17,7 @@ function draw(){
   background(100);
   let n = montecarlo();
   var index = parseInt(n*widthScreen);
-  print(index);
   vals[index]+=1;
-  print(vals[index]+"a");
   stroke(255);
 
   var normalization = false;
@@ -35,13 +33,15 @@ function draw(){
     if(normalization) norms[x] = (vals[x]/maxy)*(heightScreen);
     else norms[x] = vals[x];
   }
+}
 
   function montecarlo(){
     var foundone =false;
     var hack =0;
     while(!foundone && hack < 10000){
       var r1 = random(1);
-      var r2 = random(2);
+      var r2 = random(1);
+      print("r1: " + r1 + " r2: " + r2);
       var y = r1*r1;
       if(r2<y){
         foundone = true;
@@ -52,4 +52,3 @@ function draw(){
     }
     return 0;
   }
-}
