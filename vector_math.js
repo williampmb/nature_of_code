@@ -1,16 +1,16 @@
-let m;
+let mover1;
 
 function setup(){
   createCanvas(500,500);
-  m = new Mover();
+  mover1 = new Mover();
 }
 
 function draw(){
-  background(255);
+  background(0);
 
-  m.update();
-  m.edges();
-  m.show();
+   mover1.update();
+   mover1.edges();
+   mover1.show();
 
   // background(255);
   // strokeWeight(2);
