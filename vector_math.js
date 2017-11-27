@@ -9,7 +9,7 @@ function draw(){
   background(0);
 
    mover1.update();
-   mover1.edges();
+   //mover1.edges();
    mover1.show();
 
   // background(255);

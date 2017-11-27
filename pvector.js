@@ -33,4 +33,9 @@ class PVector{
     this.normalize();
     this.mult(value);
   }
+
+	limit(value){
+		if(this.axisX >= value) this.axisX = value;
+		if(this.axisY >= value) this.axisY = value;
+	}
 }
