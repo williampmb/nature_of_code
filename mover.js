@@ -1,9 +1,10 @@
 class Mover{
   constructor(){
-    this.location = new PVector(width/2, height/2);
-    this.velocity = new PVector(0,0);
+    //this.location = new PVector(random(width), height/2);
+    this.location = new PVector(random(width), 0);
+    this.velocity = new PVector(0.1,0.1);
     this.acceleration = new PVector(0,0);
-
+    this.mass = random(0.5,3);
     //p5.Vector from API
     // this.location = createVector(width/2, height/2);
     // this.velocity = createVector(width/2,height/2);
@@ -22,6 +23,12 @@ class Mover{
     this.location.add(this.velocity);
     this.acceleration.mult(0);
     //this.velocity.limit(5);
+  }
+
+  //Newton's 2nd law with mass
+  applyForce(force){
+    let result = PVector.div(force,this.mass);
+    this.acceleration.add(result);
   }
 
   edges(){
@@ -49,12 +56,8 @@ class Mover{
   show(){
     stroke(0);
     strokeWeight(2);
-    fill(127);
-    ellipse(this.location.axisX, this.location.axisY, 48, 48);
+    fill(170);
+    ellipse(this.location.axisX, this.location.axisY, this.mass*20, this.mass*20);
   }
 
-  //Newton's 2nd law (the begining)
-  applyForce(force){
-      this.acceleration.add(force);
-  }
 }
