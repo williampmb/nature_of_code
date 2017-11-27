@@ -5,12 +5,29 @@ function setup(){
   mover1 = new Mover();
 }
 
+function mousePressed(){
+  return true;
+}
+
 function draw(){
   background(0);
 
-   mover1.update();
-   //mover1.edges();
-   mover1.show();
+  let gravity = new PVector(0,0.5);
+  mover1.applyForce(gravity);
+
+  //the way of checking a mouse event in javascript
+  //https://www.w3schools.com/js/js_events_examples.asp
+  // the way of checking events in p5
+  // https://p5js.org/reference/  #events
+  if(mouseIsPressed){
+    let wind = new PVector(0.3,0);
+    mover1.applyForce(wind);
+  }
+
+  mover1.update();
+  mover1.edges();
+  mover1.show();
+
 
   // background(255);
   // strokeWeight(2);

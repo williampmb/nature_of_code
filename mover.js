@@ -1,7 +1,7 @@
 class Mover{
   constructor(){
     this.location = new PVector(width/2, height/2);
-    this.velocity = new PVector(width/2,height/2);
+    this.velocity = new PVector(0,0);
     this.acceleration = new PVector(0,0);
 
     //p5.Vector from API
@@ -12,25 +12,38 @@ class Mover{
 
   update(){
     // let mouse = createVector(mouseX,mouseY);
-    let mouse = new PVector(mouseX,mouseY);
-    mouse.sub(this.location);
-    mouse.setMag(0.001);
+    // let mouse = new PVector(mouseX,mouseY);
+    // mouse.sub(this.location);
+    // mouse.setMag(0.1);
 
     //this.acceleration = p5.Vector.random2D();
-    this.acceleration = mouse;
-    print(this.acceleration);
+    //this.acceleration = mouse;
     this.velocity.add(this.acceleration);
-    print(this.velocity);
     this.location.add(this.velocity);
-    //print("location: " + this.location.axisX );
-    this.velocity.limit(5);
+    this.acceleration.mult(0);
+    //this.velocity.limit(5);
   }
 
   edges(){
-    if(this.location.axisX > width)  this.location.axisX = 0;
-    if(this.location.axisX < 0)      this.location.axisX = width;
-    if(this.location.axisY > height) this.location.axisY = 0;
-    if(this.location.axisY < 0)      this.location.axisY = height;
+    if(this.location.axisX > width)  {
+      this.location.axisX = width;
+      this.velocity.axisX *= -1;
+    }
+    if(this.location.axisX < 0 )  {
+      this.location.axisX = 0;
+      this.velocity.axisX *= -1;
+    }
+    //if(this.location.axisX < 0)      this.location.axisX = width;
+    if(this.location.axisY > height){
+       this.location.axisY = height;
+       this.velocity.axisY *= -1;
+    }
+
+    if(this.location.axisY < 0){
+       this.location.axisY = 0;
+       this.velocity.axisY *= -1;
+    }
+    //if(this.location.axisY < 0)      this.location.axisY = height;
   }
 
   show(){
@@ -38,5 +51,10 @@ class Mover{
     strokeWeight(2);
     fill(127);
     ellipse(this.location.axisX, this.location.axisY, 48, 48);
+  }
+
+  //Newton's 2nd law (the begining)
+  applyForce(force){
+      this.acceleration.add(force);
   }
 }
